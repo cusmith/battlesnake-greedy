@@ -36,13 +36,9 @@ def start():
 def move():
     data = bottle.request.json
 
-    board_width = len(data['board'])
-    board_height = len(data['board'][0])
-
     for snake in data['snakes']:
         if snake['name'] == SNAKE_NAME:
             head = snake['coords'][0]
-    print "Head: " + str(head)
 
     smallest = 999
     target = [0, 0]
@@ -54,43 +50,29 @@ def move():
             smallest = distance
             target = food
 
-    print 'Target: ' + str(target)
-
     move = None
     if target[1] < head[1]:
-        print 'Try up'
         if data['board'][head[0]][head[1]-1]['state'] in GOOD_STUFF:
             move = 'up'
-            print 'Succeed up'
     if target[1] > head[1]:
-        print 'Try down'
         if data['board'][head[0]][head[1]+1]['state'] in GOOD_STUFF:
             move = 'down'
-            print 'Succeed down'
     if target[0] < head[0]:
-        print 'Try left'
         if data['board'][head[0]-1][head[1]]['state'] in GOOD_STUFF:
             move = 'left'
-            print 'Succeed left'
     if target[0] > head[0]:
-        print 'Try right'
         if data['board'][head[0]+1][head[1]]['state'] in GOOD_STUFF:
             move = 'right'
-            print 'Succeed right'
 
     if not move:
         if data['board'][head[0]][head[1]-1]['state'] in GOOD_STUFF:
             move = 'up'
-            print 'Fallback up'
         if data['board'][head[0]][head[1]+1]['state'] in GOOD_STUFF:
             move = 'down'
-            print 'Fallback up'
         if data['board'][head[0]-1][head[1]]['state'] in GOOD_STUFF:
             move = 'left'
-            print 'Fallback up'
         if data['board'][head[0]+1][head[1]]['state'] in GOOD_STUFF:
             move = 'right'
-            print 'Fallback up'
     print move
     return json.dumps({
         'move': move,
