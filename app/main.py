@@ -58,33 +58,33 @@ def move():
     move = None
     if target[0] > head[0]:
         if data['board'][head[0]][head[1]+1]['state'] == 'empty':
-            move = 'down'
+            move = 'up'
             print 1
     if target[0] < head[0]:
         if data['board'][head[0]][head[1]-1]['state'] == 'empty':
-            move = 'up'
+            move = 'down'
             print 2
     if target[1] > head[1]:
         if data['board'][head[0]+1][head[1]]['state'] == 'empty':
-            move = 'right'
+            move = 'left'
             print 3
     if target[1] < head[1]:
         if data['board'][head[0]-1][head[1]]['state'] == 'empty':
-            move = 'left'
+            move = 'right'
             print 4
 
     if not move:
         if data['board'][head[0]][head[1]+1]['state'] == 'empty':
-            move = 'down'
+            move = 'up'
             print 5
         if data['board'][head[0]][head[1]-1]['state'] == 'empty':
-            move = 'up'
+            move = 'down'
             print 6
         if data['board'][head[0]+1][head[1]]['state'] == 'empty':
-            move = 'right'
+            move = 'left'
             print 7
         if data['board'][head[0]-1][head[1]]['state'] == 'empty':
-            move = 'left'
+            move = 'right'
             print 8
 
     return json.dumps({
