@@ -7,6 +7,8 @@ SNAKE_TAUNT = 'I will find you, and I will kill you...'
 SNAKE_COLOUR = '#FE2EF7'
 SNAKE_HEAD_URL = 'http://battlesnake-snaken.herokuapp.com'
 
+GOOD_STUFF = ['food', 'empty']
+
 @bottle.get('/')
 def index():
     return """
@@ -57,36 +59,36 @@ def move():
     move = None
     if target[1] < head[1]:
         print 'Try up'
-        if data['board'][head[0]][head[1]-1]['state'] == 'empty':
+        if data['board'][head[0]][head[1]-1]['state'] in GOOD_STUFF:
             move = 'up'
             print 'Succeed up'
     if target[1] > head[1]:
         print 'Try down'
-        if data['board'][head[0]][head[1]+1]['state'] == 'empty':
+        if data['board'][head[0]][head[1]+1]['state'] in GOOD_STUFF:
             move = 'down'
             print 'Succeed down'
     if target[0] < head[0]:
         print 'Try left'
-        if data['board'][head[0]-1][head[1]]['state'] == 'empty':
+        if data['board'][head[0]-1][head[1]]['state'] in GOOD_STUFF:
             move = 'left'
             print 'Succeed left'
     if target[0] > head[0]:
         print 'Try right'
-        if data['board'][head[0]+1][head[1]]['state'] == 'empty':
+        if data['board'][head[0]+1][head[1]]['state'] in GOOD_STUFF:
             move = 'right'
             print 'Succeed right'
 
     if not move:
-        if data['board'][head[0]][head[1]-1]['state'] == 'empty':
+        if data['board'][head[0]][head[1]-1]['state'] in GOOD_STUFF:
             move = 'up'
             print 'Fallback up'
-        if data['board'][head[0]][head[1]+1]['state'] == 'empty':
+        if data['board'][head[0]][head[1]+1]['state'] in GOOD_STUFF:
             move = 'down'
             print 'Fallback up'
-        if data['board'][head[0]-1][head[1]]['state'] == 'empty':
+        if data['board'][head[0]-1][head[1]]['state'] in GOOD_STUFF:
             move = 'left'
             print 'Fallback up'
-        if data['board'][head[0]+1][head[1]]['state'] == 'empty':
+        if data['board'][head[0]+1][head[1]]['state'] in GOOD_STUFF:
             move = 'right'
             print 'Fallback up'
     print move
