@@ -43,36 +43,47 @@ def move():
     smallest = 999
     target = [0, 0]
     for food in data['food']:
+        print food
         x_dis = abs(food[0] - head[0])
         y_dis = abs(food[1] - head[1])
         distance = x_dis + y_dis
         if distance < smallest:
             smallest = distance
             target = food
+            print smallest
+            print target
 
     move = None
     if target[0] > head[0]:
         if data['board'][head[0]][head[1]+1]['state'] == 'empty':
             move = 'down'
+            print 1
     if target[0] < head[0]:
         if data['board'][head[0]][head[1]-1]['state'] == 'empty':
             move = 'up'
+            print 2
     if target[1] > head[1]:
         if data['board'][head[0]+1][head[1]]['state'] == 'empty':
             move = 'right'
+            print 3
     if target[1] < head[1]:
         if data['board'][head[0]-1][head[1]]['state'] == 'empty':
             move = 'left'
+            print 4
 
     if not move:
         if data['board'][head[0]][head[1]+1]['state'] == 'empty':
             move = 'down'
+            print 5
         if data['board'][head[0]][head[1]-1]['state'] == 'empty':
             move = 'up'
+            print 6
         if data['board'][head[0]+1][head[1]]['state'] == 'empty':
             move = 'right'
+            print 7
         if data['board'][head[0]-1][head[1]]['state'] == 'empty':
             move = 'left'
+            print 8
 
     return json.dumps({
         'move': move,
