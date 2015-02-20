@@ -2,6 +2,11 @@ import bottle
 import json
 
 
+SNAKE_NAME = 'snaken'
+SNAKE_TAUNT = 'I will find you, and I will kill you...'
+SNAKE_COLOUR = '#FE2EF7'
+SNAKE_HEAD_URL = 'http://battlesnake-snaken.herokuapp.com'
+
 @bottle.get('/')
 def index():
     return """
@@ -15,11 +20,12 @@ def index():
 def start():
     data = bottle.request.json
 
+
     return json.dumps({
-        'name': 'battlesnake-python',
-        'color': '#00ff00',
-        'head_url': 'http://battlesnake-python.herokuapp.com',
-        'taunt': 'battlesnake-python!'
+        'name': SNAKE_NAME,
+        'color': SNAKE_COLOUR,
+        'head_url': SNAKE_HEAD_URL,
+        'taunt': SNAKE_TAUNT
     })
 
 
@@ -27,9 +33,50 @@ def start():
 def move():
     data = bottle.request.json
 
+    board_width = len(data['board'])
+    board_height = len(data['board'][0])
+
+    for snake in data['snakes']:
+        if snake['name'] == SNAKE_NAME:
+            head = snake['coords'][0]
+
+    smallest = 999
+    target = [0, 0]
+    for food in data['food']:
+        x_dis = abs(food[0] - head[0])
+        y_dis = abs(food[1] - head[1])
+        distance = x_dis + y_dis
+        if distance < smallest:
+            smallest = distance
+            target = food
+
+    move = None
+    if target[0] > head[0]:
+        if data['board'][head[0]][head[1]+1]['state'] == 'empty':
+            move = 'down'
+    if target[0] < head[0]:
+        if data['board'][head[0]][head[1]-1]['state'] == 'empty':
+            move = 'up'
+    if target[1] > head[1]:
+        if data['board'][head[0]+1][head[1]]['state'] == 'empty':
+            move = 'right'
+    if target[1] < head[1]:
+        if data['board'][head[0]-1][head[1]]['state'] == 'empty':
+            move = 'left'
+
+    if not move:
+        if data['board'][head[0]][head[1]+1]['state'] == 'empty':
+            move = 'down'
+        if data['board'][head[0]][head[1]-1]['state'] == 'empty':
+            move = 'up'
+        if data['board'][head[0]+1][head[1]]['state'] == 'empty':
+            move = 'right'
+        if data['board'][head[0]-1][head[1]]['state'] == 'empty':
+            move = 'left'
+
     return json.dumps({
-        'move': 'left',
-        'taunt': 'battlesnake-python!'
+        'move': move,
+        'taunt': SNAKE_TAUNT
     })
 
 
