@@ -40,52 +40,55 @@ def move():
     for snake in data['snakes']:
         if snake['name'] == SNAKE_NAME:
             head = snake['coords'][0]
-    print head
+    print "Head: " + head
+
     smallest = 999
     target = [0, 0]
     for food in data['food']:
-        print food
         x_dis = abs(food[0] - head[0])
         y_dis = abs(food[1] - head[1])
         distance = x_dis + y_dis
         if distance < smallest:
             smallest = distance
             target = food
-            print smallest
-            print target
-    print target
-    print data['food']
+
+    print 'Target: ' + target
+
     move = None
     if target[0] > head[0]:
+        print 'Try up'
         if data['board'][head[0]][head[1]-1]['state'] == 'empty':
             move = 'up'
-            print 1
+            print 'Succeed up'
     if target[0] < head[0]:
+        print 'Try down'
         if data['board'][head[0]][head[1]+1]['state'] == 'empty':
             move = 'down'
-            print 2
+            print 'Succeed down'
     if target[1] > head[1]:
+        print 'Try left'
         if data['board'][head[0]-1][head[1]]['state'] == 'empty':
             move = 'left'
-            print 3
+            print 'Succeed left'
     if target[1] < head[1]:
+        print 'Try right'
         if data['board'][head[0]+1][head[1]]['state'] == 'empty':
             move = 'right'
-            print 4
+            print 'Succeed right'
 
     if not move:
         if data['board'][head[0]][head[1]-1]['state'] == 'empty':
             move = 'up'
-            print 5
+            print 'Fallback up'
         if data['board'][head[0]][head[1]+1]['state'] == 'empty':
             move = 'down'
-            print 6
+            print 'Fallback up'
         if data['board'][head[0]-1][head[1]]['state'] == 'empty':
             move = 'left'
-            print 7
+            print 'Fallback up'
         if data['board'][head[0]+1][head[1]]['state'] == 'empty':
             move = 'right'
-            print 8
+            print 'Fallback up'
 
     return json.dumps({
         'move': move,
