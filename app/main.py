@@ -20,6 +20,7 @@ def index():
 def start():
     data = bottle.request.json
 
+    print 'watafuq'
 
     return json.dumps({
         'name': SNAKE_NAME,
@@ -39,7 +40,7 @@ def move():
     for snake in data['snakes']:
         if snake['name'] == SNAKE_NAME:
             head = snake['coords'][0]
-
+    print head
     smallest = 999
     target = [0, 0]
     for food in data['food']:
@@ -52,7 +53,8 @@ def move():
             target = food
             print smallest
             print target
-
+    print target
+    print data['food']
     move = None
     if target[0] > head[0]:
         if data['board'][head[0]][head[1]+1]['state'] == 'empty':
