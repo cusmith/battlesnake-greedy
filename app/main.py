@@ -40,7 +40,7 @@ def move():
     for snake in data['snakes']:
         if snake['name'] == SNAKE_NAME:
             head = snake['coords'][0]
-    print "Head: " + head
+    print "Head: " + str(head)
 
     smallest = 999
     target = [0, 0]
@@ -52,7 +52,7 @@ def move():
             smallest = distance
             target = food
 
-    print 'Target: ' + target
+    print 'Target: ' + str(target)
 
     move = None
     if target[0] > head[0]:
@@ -89,7 +89,7 @@ def move():
         if data['board'][head[0]+1][head[1]]['state'] == 'empty':
             move = 'right'
             print 'Fallback up'
-
+    print move
     return json.dumps({
         'move': move,
         'taunt': SNAKE_TAUNT
