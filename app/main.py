@@ -22,8 +22,6 @@ def index():
 def start():
     data = bottle.request.json
 
-    print 'watafuq'
-
     return json.dumps({
         'name': SNAKE_NAME,
         'color': SNAKE_COLOUR,
@@ -73,7 +71,7 @@ def move():
             move = 'left'
         if data['board'][head[0]+1][head[1]]['state'] in GOOD_STUFF:
             move = 'right'
-    print move
+
     return json.dumps({
         'move': move,
         'taunt': SNAKE_TAUNT
