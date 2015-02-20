@@ -33,7 +33,7 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
-
+    print data
     board_width = len(data['board'])
     board_height = len(data['board'][0])
 
