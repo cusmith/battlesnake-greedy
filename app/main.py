@@ -63,13 +63,13 @@ def move():
             move = 'right'
 
     if not move:
-        if data['board'][head[0]][head[1]-1]['state'] in GOOD_STUFF:
+        if data['board'][head[0]][head[1]-1]['state'] in GOOD_STUFF and head[1] != 0:
             move = 'up'
-        if data['board'][head[0]][head[1]+1]['state'] in GOOD_STUFF:
+        if data['board'][head[0]][head[1]+1]['state'] in GOOD_STUFF and head[1] != len(data['board'][0]):
             move = 'down'
-        if data['board'][head[0]-1][head[1]]['state'] in GOOD_STUFF:
+        if data['board'][head[0]-1][head[1]]['state'] in GOOD_STUFF and head[0] != 0:
             move = 'left'
-        if data['board'][head[0]+1][head[1]]['state'] in GOOD_STUFF:
+        if data['board'][head[0]+1][head[1]]['state'] in GOOD_STUFF and head[1] != len(data['board']):
             move = 'right'
 
     return json.dumps({
