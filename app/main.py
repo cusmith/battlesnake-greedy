@@ -73,6 +73,8 @@ def move():
 
     taunt = None
     turn = int(data['turn'])
+    print turn
+    print turn % 100
     if turn % 100 == 10:
         taunt = 'I dont know who you are. I dont know what you want.'
     if turn % 100 == 20:
