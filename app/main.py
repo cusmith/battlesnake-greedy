@@ -2,7 +2,7 @@ import bottle
 import json
 
 
-SNAKE_NAME = 'snaken'
+SNAKE_NAME = '☢☣☠⚠'
 SNAKE_TAUNT = 'I will find you, and I will kill you...'
 SNAKE_COLOUR = '#FE2EF7'
 SNAKE_HEAD_URL = 'http://cdn.movieweb.com/img.news/NE8T7skxguIwbe_1_1.jpg'
