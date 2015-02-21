@@ -72,19 +72,20 @@ def move():
             move = 'right'
 
     taunt = None
-    if data['turn'] % 100 == 10:
+    turn = int(data['turn'])
+    if turn % 100 == 10:
         taunt = 'I dont know who you are. I dont know what you want.'
-    if data['turn'] % 100 == 20:
+    if turn % 100 == 20:
         taunt = 'If you are looking for ransom, I can tell you I dont have money.'
-    if data['turn'] % 100 == 30:
+    if turn % 100 == 30:
         taunt = 'But what I do have are a very particular set of skills, skills I have acquired over a very long career.'
-    if data['turn'] % 100 == 40:
+    if turn % 100 == 40:
         taunt = 'Skills that make me a nightmare for snakes like you.'
-    if data['turn'] % 100 == 50:
+    if turn % 100 == 50:
         taunt = 'If you let my daughter go now, thatll be the end of it.'
-    if data['turn'] % 100 == 60:
+    if turn % 100 == 60:
         taunt = 'I will not look for you, I will not pursue you.'
-    if data['turn'] % 100 == 70:
+    if turn % 100 == 70:
         taunt = 'But if you dont, I will look for you, I will find you, and I will kill you.'
 
     return json.dumps({
