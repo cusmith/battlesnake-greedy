@@ -73,22 +73,31 @@ def move():
 
     taunt = None
     turn = int(data['turn'])
-    print turn
-    print turn % 100
-    if turn % 100 == 10:
-        taunt = 'I dont know who you are. I dont know what you want.'
-    if turn % 100 == 20:
-        taunt = 'If you are looking for ransom, I can tell you I dont have money.'
-    if turn % 100 == 30:
-        taunt = 'But what I do have are a very particular set of skills, skills I have acquired over a very long career.'
+
+    if turn % 100 == 8:
+        taunt = 'I dont know who you are, I dont know what you want'
+    if turn % 100 == 16:
+        taunt = 'If you are looking for ransom...'
+    if turn % 100 == 24:
+        taunt = 'I can tell you I dont have money.'
+    if turn % 100 == 32:
+        taunt = 'But what I do have...'
     if turn % 100 == 40:
-        taunt = 'Skills that make me a nightmare for snakes like you.'
-    if turn % 100 == 50:
-        taunt = 'If you let my daughter go now, thatll be the end of it.'
-    if turn % 100 == 60:
+        taunt = 'are a very particular set of skills,'
+    if turn % 100 == 48:
+        taunt = 'skills I have acquired over a very long career.'
+    if turn % 100 == 56:
+        taunt = 'Skills that make me a nightmare for snakes like you'
+    if turn % 100 == 64:
+        taunt = 'If you let my daughter go now,'
+    if turn % 100 == 72:
+        taunt = 'thatll be the end of it.'
+    if turn % 100 == 80:
         taunt = 'I will not look for you, I will not pursue you.'
-    if turn % 100 == 70:
-        taunt = 'But if you dont, I will look for you, I will find you, and I will kill you.'
+    if turn % 100 == 88:
+        taunt = 'But if you dont, I will look for you,'
+    if turn % 100 == 96:
+        taunt = 'I will find you, and I will kill you.'
 
     return json.dumps({
         'move': move,
